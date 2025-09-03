@@ -14,8 +14,8 @@ import numpy as np
 import sounddevice as sd
 from collections import deque
 
-from src.utils.config_manager import ConfigManager
-from src.utils.logging_config import setup_logging, get_logger
+from src.utils.config.config_manager import ConfigManager
+from src.utils.logging.logging_config import setup_logging, get_logger
 from src.llm import OpenAILLM
 
 logger = get_logger(__name__)
@@ -170,7 +170,7 @@ class VoiceRecorder:
                 self.tts_client = AliyunTTSClient(tts_config)
                 
                 # 初始化音频播放器
-                from src.utils.audio_player import AudioPlayer
+                from src.utils.audio.audio_player import AudioPlayer
                 self.audio_player = AudioPlayer(sample_rate=16000, channels=1)
                 
                 print("✅ TTS初始化成功")

@@ -27,6 +27,6 @@ cache/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-xiaozhi.spec
+lumi.spec
 
 /installer

@@ -1,0 +1,37 @@
+2025-09-03 16:19:38 [WARNING] src.utils.config.config_manager: 配置文件不存在: /Users/yaotutu/Desktop/code/py-xiaozhi/src/config/config.json
+2025-09-03 16:19:38 [INFO] src.utils.config.config_manager: 已创建默认配置文件: /Users/yaotutu/Desktop/code/py-xiaozhi/src/config/config.json
+2025-09-03 16:19:38 [INFO] src.utils.config.config_manager: 配置文件加载成功: /Users/yaotutu/Desktop/code/py-xiaozhi/src/config/config.json
+2025-09-03 16:19:55 [INFO] src.utils.config.config_manager: 配置文件加载成功: /Users/yaotutu/Desktop/code/py-xiaozhi/config/config.json
+2025-09-03 16:19:56 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:19:56 [ERROR] __main__: TTS初始化错误: No module named 'src.utils.audio_player'
+Traceback (most recent call last):
+  File "/Users/yaotutu/Desktop/code/py-xiaozhi/main.py", line 173, in init_tts
+    from src.utils.audio_player import AudioPlayer
+ModuleNotFoundError: No module named 'src.utils.audio_player'
+2025-09-03 16:19:58 [ERROR] __main__: 主程序错误: EOF when reading a line
+Traceback (most recent call last):
+  File "/Users/yaotutu/Desktop/code/py-xiaozhi/main.py", line 382, in <module>
+    asyncio.run(main())
+  File "/Users/yaotutu/.pyenv/versions/3.10.13/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Users/yaotutu/.pyenv/versions/3.10.13/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/yaotutu/Desktop/code/py-xiaozhi/main.py", line 344, in main
+    cmd = input().strip().lower()
+EOFError: EOF when reading a line
+2025-09-03 16:20:45 [INFO] src.utils.config.config_manager: 配置文件加载成功: /Users/yaotutu/Desktop/code/py-xiaozhi/config/config.json
+2025-09-03 16:20:45 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:20:45 [ERROR] __main__: 主程序错误: EOF when reading a line
+Traceback (most recent call last):
+  File "/Users/yaotutu/Desktop/code/py-xiaozhi/main.py", line 382, in <module>
+    asyncio.run(main())
+  File "/Users/yaotutu/.pyenv/versions/3.10.13/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Users/yaotutu/.pyenv/versions/3.10.13/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/yaotutu/Desktop/code/py-xiaozhi/main.py", line 344, in main
+    cmd = input().strip().lower()
+EOFError: EOF when reading a line
+2025-09-03 16:23:22 [INFO] src.utils.config.config_manager: 配置文件加载成功: /Users/yaotutu/Desktop/code/py-xiaozhi/config/config.json
+2025-09-03 16:23:22 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:23:43 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"

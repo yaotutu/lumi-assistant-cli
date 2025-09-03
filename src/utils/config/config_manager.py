@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from src.utils.logging_config import get_logger
+from src.utils.logging.logging_config import get_logger
 
 logger = get_logger(__name__)
 
@@ -36,8 +36,8 @@ class ConfigManager:
     
     def _get_config_path(self) -> Path:
         """获取配置文件路径"""
-        # 从当前文件位置找到项目根目录
-        project_root = Path(__file__).parent.parent.parent
+        # 从当前文件位置找到项目根目录（需要回到上三级目录）
+        project_root = Path(__file__).parent.parent.parent.parent
         config_path = project_root / "config" / "config.json"
         
         if not config_path.exists():
