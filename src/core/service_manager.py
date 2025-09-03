@@ -8,7 +8,7 @@
 
 from src.utils.config.config_manager import ConfigManager
 from src.utils.logging.logging_config import get_logger
-from src.llm import OpenAILLM
+from src.llm.enhanced_llm import EnhancedLLM
 from .events.event_bus import event_bus
 from .events.event_types import (
     AudioDataEvent, ASRResultEvent, LLMResponseEvent,
@@ -25,6 +25,11 @@ class ServiceManager:
         self.config = ConfigManager.get_instance()
         
         # 服务客户端
+        self.asr = None  # ASR客户端
+        self.llm = None  # LLM客户端（增强版）
+        self.tts = None  # TTS客户端
+        
+        # 兼容旧名称
         self.asr_client = None
         self.llm_client = None
         self.tts_client = None
@@ -40,7 +45,7 @@ class ServiceManager:
         
     async def _handle_audio_data(self, event: AudioDataEvent):
         """处理音频数据 - 发送到ASR"""
-        if not self.asr_client:
+        if not self.asr:
             logger.warning("ASR服务未初始化")
             return
             
@@ -48,7 +53,7 @@ class ServiceManager:
             print("📤 发送音频到ASR进行识别...")
             
             # 发送到ASR进行识别
-            result = await self.asr_client.recognize_speech([event.audio_data], event.format)
+            result = await self.asr.recognize_speech([event.audio_data], event.format)
             
             if result:
                 print(f"\n📝 识别结果: {result}")
@@ -69,7 +74,7 @@ class ServiceManager:
             
     async def _handle_asr_result(self, event: ASRResultEvent):
         """处理ASR结果 - 发送到LLM"""
-        if not self.llm_client:
+        if not self.llm:
             # 如果LLM不可用，直接进行TTS
             await self._perform_tts(event.text, event.source)
             return
@@ -77,7 +82,10 @@ class ServiceManager:
         try:
             print("🤖 正在调用LLM处理...")
             
-            response = await self.llm_client.chat(event.text)
+            # 使用流式输出（如果支持）
+            response = ""
+            async for chunk in self.llm.chat_stream(event.text):
+                response += chunk
             
             if response:
                 print(f"\n🤖 LLM回复: {response}")
@@ -104,7 +112,7 @@ class ServiceManager:
         
     async def _perform_tts(self, text: str, source: str):
         """执行TTS转换并播放"""
-        if not self.tts_client:
+        if not self.tts:
             logger.warning("TTS服务未初始化，无法播放语音")
             return
             
@@ -114,7 +122,7 @@ class ServiceManager:
             await asyncio.sleep(1)
             
             print("🎤 正在进行语音合成...")
-            tts_audio = await self.tts_client.text_to_speak(text)
+            tts_audio = await self.tts.text_to_speak(text)
             
             if tts_audio:
                 # 发布播放音频事件
@@ -156,7 +164,8 @@ class ServiceManager:
                     format=self.config.get_config("LOCAL_ASR.ALIYUN_ASR.format", "wav")
                 )
                 
-                self.asr_client = AliyunASRClient(asr_config, self._on_asr_result)
+                self.asr = AliyunASRClient(asr_config, self._on_asr_result)
+                self.asr_client = self.asr  # 兼容性
                 print("✅ ASR初始化成功")
                 return True
             else:
@@ -179,7 +188,7 @@ class ServiceManager:
             provider = self.config.get_config("LLM.PROVIDER", "openai")
             
             if provider == "openai":
-                print("🔧 初始化OpenAI LLM...")
+                print("🔧 初始化增强版LLM（带对话管理）...")
                 
                 # 从配置文件创建LLM配置
                 llm_config = {
@@ -190,15 +199,25 @@ class ServiceManager:
                     "temperature": self.config.get_config("LLM.OPENAI_LLM.temperature", 0.7)
                 }
                 
-                self.llm_client = OpenAILLM(llm_config)
+                # 使用增强版LLM
+                self.llm = EnhancedLLM(llm_config)
+                self.llm_client = self.llm  # 兼容性
                 
                 # 测试连接
-                if await self.llm_client.test_connection():
-                    print("✅ LLM初始化成功")
-                    return True
+                if await self.llm.test_connection():
+                    print("✅ LLM初始化成功（增强版）")
+                    
+                    # 初始化会话
+                    if await self.llm.initialize():
+                        print("✅ 会话系统已就绪")
+                        return True
+                    else:
+                        print("⚠️ 会话初始化失败")
+                        return False
                 else:
                     print("⚠️ LLM连接测试失败，将跳过LLM功能")
                     print("💡 要启用LLM功能，请在config/config.json中配置正确的API密钥")
+                    self.llm = None
                     self.llm_client = None
                     return False
             else:
@@ -209,6 +228,7 @@ class ServiceManager:
             print(f"❌ LLM初始化失败: {e}")
             print("💡 将跳过LLM功能，程序仍可正常使用ASR和TTS")
             logger.error(f"LLM初始化错误: {e}", exc_info=True)
+            self.llm = None
             self.llm_client = None
             return False
             
@@ -240,7 +260,8 @@ class ServiceManager:
                     pitch_rate=self.config.get_config("LOCAL_TTS.ALIYUN_TTS.pitch_rate", 0)
                 )
                 
-                self.tts_client = AliyunTTSClient(tts_config)
+                self.tts = AliyunTTSClient(tts_config)
+                self.tts_client = self.tts  # 兼容性
                 
                 print("✅ TTS初始化成功")
                 return True

@@ -61,3 +61,16 @@ EOFError: EOF when reading a line
 2025-09-03 17:32:05 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
 2025-09-03 17:32:05 [INFO] src.core.audio_manager: 音频系统初始化成功
 2025-09-03 17:32:11 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:35:03 [INFO] openai._base_client: Retrying request to /chat/completions in 0.475444 seconds
+2025-09-03 20:35:04 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:35:04 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 20:35:04 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 20:38:24 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:38:29 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 20:38:33 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:38:51 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:39:12 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 20:39:14 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:39:15 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 20:39:29 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 20:40:21 [INFO] src.core.audio_manager: 音频资源已清理

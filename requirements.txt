@@ -14,3 +14,6 @@ openai==1.35.0
 
 # macOS音量控制（可选）
 # py-applescript  # macOS only
+
+# 配置文件解析
+PyYAML>=6.0.0

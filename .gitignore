@@ -1,8 +1,21 @@
+# 日志文件
 /logs
+*.log
+
+# 配置文件（包含敏感信息）
 /config
 
+# 会话数据（用户隐私）
+/data/sessions/
+data/sessions/
+
+# Python
 .venv
 **/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 
 .idea/
 venv/
@@ -10,8 +23,12 @@ venv/
 # 音乐缓存
 cache/
 
-
+# 模型文件
 /models
+
+# 测试文件
+test_*.py
+*.test.py
 
 # 打包相关
 /build
@@ -30,3 +47,6 @@ cache/
 lumi.spec
 
 /installer
+
+# 导出的会话文件
+session_*.json
