@@ -35,3 +35,29 @@ EOFError: EOF when reading a line
 2025-09-03 16:23:22 [INFO] src.utils.config.config_manager: 配置文件加载成功: /Users/yaotutu/Desktop/code/py-xiaozhi/config/config.json
 2025-09-03 16:23:22 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
 2025-09-03 16:23:43 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:38:49 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:38:49 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:38:49 [WARNING] src.interfaces.cli_interface: 检测到EOF，程序退出
+2025-09-03 16:38:49 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 16:39:00 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:39:00 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:39:00 [WARNING] src.interfaces.cli_interface: 检测到EOF，程序退出
+2025-09-03 16:39:01 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 16:39:48 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:39:48 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:39:48 [WARNING] src.interfaces.cli_interface: 检测到EOF，程序退出
+2025-09-03 16:39:48 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 16:43:29 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:43:29 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:43:29 [WARNING] src.interfaces.cli_interface: 检测到EOF，程序退出
+2025-09-03 16:43:29 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 16:45:33 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:45:33 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:45:34 [ERROR] src.interfaces.cli_interface: CLI界面错误: StartListeningEvent.__init__() got an unexpected keyword argument 'source'
+2025-09-03 16:46:27 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 16:46:27 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 16:46:27 [WARNING] src.interfaces.cli_interface: 检测到EOF，程序退出
+2025-09-03 16:46:27 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-03 17:32:05 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-03 17:32:05 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-03 17:32:11 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"

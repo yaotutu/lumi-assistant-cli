@@ -4,8 +4,6 @@
 操作控制器
 提供统一的操作接口，支持CLI、gRPC、GUI等多种触发方式
 """
-import asyncio
-from typing import Optional
 from .events.event_bus import event_bus
 from .events.event_types import (
     StartListeningEvent, StopListeningEvent, 

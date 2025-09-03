@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-lumi-assistant 是一个极简AI语音助手，专为CLI环境设计。实现了完整的语音交互流程：语音识别(ASR) → 大语言模型处理(LLM) → 语音合成(TTS) → 音频播放。主要基于阿里云语音服务和OpenAI兼容的LLM API。
+lumi-assistant 是一个极简AI语音助手，专为CLI环境设计。实现了完整的语音交互流程：语音识别(ASR) → 大语言模型处理(LLM) → 语音合成(TTS) → 音频播放。主要基于阿里云语音服务和OpenAI兼容的LLM API。项目采用事件驱动架构，支持未来扩展到多种界面（CLI、gRPC、GUI）。
 
 ## 常用开发命令
 
@@ -14,7 +14,7 @@ lumi-assistant 是一个极简AI语音助手，专为CLI环境设计。实现了
 python main.py
 
 # 测试LLM配置和连接
-python test_llm.py
+python tests/unit/test_llm.py
 ```
 
 ### 环境配置
@@ -25,26 +25,26 @@ source .venv/bin/activate  # Linux/macOS
 
 # 安装依赖
 pip install -r requirements.txt
-
-# macOS特定依赖（用于Opus音频编解码）
-brew install opus
 ```
 
 ### 测试和调试
 ```bash
-# 没有专门的测试框架，使用独立测试脚本：
-python test_llm.py  # 测试LLM功能
+# 运行单元测试
+python tests/unit/test_llm.py  # 测试LLM功能
+
+# 查看运行日志
+tail -f logs/app.log  # 查看应用日志（如果有logs目录）
 ```
 
 ## 核心架构
 
 ### 应用流程
 1. **main.py** - 入口程序，管理用户交互循环
-2. **音频录制** - 使用sounddevice捕获麦克风输入  
-3. **ASR识别** - 调用阿里云ASR服务识别语音为文本
+2. **音频录制** - 使用sounddevice捕获麦克风输入，转换为PCM格式  
+3. **ASR识别** - 将PCM音频数据发送到阿里云ASR服务识别为文本
 4. **LLM处理** - 将识别文本发送给LLM获取智能回复
-5. **TTS合成** - 将LLM回复通过阿里云TTS转为语音
-6. **音频播放** - 播放合成的语音
+5. **TTS合成** - 将LLM回复通过阿里云TTS转为PCM音频数据
+6. **音频播放** - 直接播放PCM格式的合成语音
 
 ### 模块架构
 ```
@@ -84,13 +84,22 @@ src/
       "access_key_secret": "", 
       "token": "...",        // NLS服务token
       "app_key": "...",      // 应用密钥
-      "sample_rate": 16000
+      "sample_rate": 16000,
+      "channels": 1,
+      "bits": 16,
+      "format": "pcm"
     }
   },
   "LOCAL_TTS": {
     "ENABLED": true,
     "PROVIDER": "aliyun",
     "ALIYUN_TTS": {
+      "access_key_id": "",
+      "access_key_secret": "",
+      "token": "...",        // NLS服务token
+      "app_key": "...",      // 应用密钥
+      "sample_rate": 16000,
+      "format": "pcm",       // 音频格式
       "voice": "zhixiaobai", // 声音类型
       "volume": 50,
       "speech_rate": 0,
@@ -120,9 +129,9 @@ src/
 ## 开发注意事项
 
 ### 音频处理
-- 固定使用16kHz采样率，单声道
-- 音频数据以numpy数组形式传递
-- 需要libopus库支持音频编解码（macOS通过Homebrew安装）
+- 固定使用16kHz采样率，单声道PCM格式
+- 音频数据以numpy数组形式传递，转换为16位PCM字节流
+- 直接与阿里云语音服务交互，无需额外的音频编解码库
 
 ### 异步编程模式
 - 所有网络请求必须使用async/await
@@ -141,9 +150,9 @@ src/
 4. 在初始化代码中添加对新provider的支持
 
 ### 依赖库关键点
-- `sounddevice`: 跨平台音频I/O，需要系统音频权限
-- `numpy`: 音频数据数值计算
-- `aiohttp/websockets`: 与阿里云服务异步通信  
+- `sounddevice`: 跨平台音频I/O，需要系统音频权限，用于录制和播放PCM音频
+- `numpy`: 音频数据数值计算和PCM格式转换
+- `aiohttp/websockets`: 与阿里云语音服务异步通信  
 - `openai`: LLM API客户端，支持异步操作
 - `colorlog`: 彩色日志输出增强调试体验
 
@@ -198,12 +207,17 @@ lumi-assistant/
 │   │   │   └── event_types.py # 事件类型定义 (音频/系统/对话事件)
 │   │   └── operation_controller.py # 操作控制器 ✅
 │   │
-│   ├── intent/                # 🧠 意图识别层 (第二阶段)
-│   ├── mcp/                   # 🔧 MCP工具调用层 (第二阶段)  
-│   ├── grpc/                  # 🌐 gRPC接口层 (第三阶段)
-│   ├── interfaces/            # 📱 多界面支持层 (第三阶段)
-│   ├── dialogue/              # 💬 高级对话管理 (第五阶段)
-│   ├── iot/                   # 🏠 IoT设备控制 (第四阶段)
+│   ├── intent/                # 🧠 意图识别层 ✅ (目录已创建, 待实现)
+│   │   └── handlers/          # 意图处理器
+│   ├── mcp/                   # 🔧 MCP工具调用层 ✅ (目录已创建, 待实现)  
+│   │   └── tools/             # MCP工具实现
+│   ├── grpc/                  # 🌐 gRPC接口层 ✅ (目录已创建, 待实现)
+│   │   └── interceptors/      # gRPC拦截器
+│   ├── interfaces/            # 📱 多界面支持层 ✅ (目录已创建, 待实现)
+│   ├── dialogue/              # 💬 高级对话管理 ✅ (目录已创建, 待实现)
+│   │   └── storage/           # 对话存储
+│   ├── iot/                   # 🏠 IoT设备控制 ✅ (目录已创建, 待实现)
+│   │   └── devices/           # 设备实现
 │   │
 │   ├── llm/                   # 🤖 LLM集成层 ✅ (OpenAI兼容API)
 │   ├── asr/                   # 🎯 语音识别层 ✅ (阿里云ASR)
@@ -219,7 +233,13 @@ lumi-assistant/
 │   ├── integration/           # 集成测试 (待添加)
 │   └── e2e/                   # 端到端测试 (待添加)
 │
-└── examples/                  # 📚 示例目录 ✅ 已准备
+├── examples/                  # 📚 示例目录 ✅ 已准备
+├── docs/                      # 📖 文档目录 ✅
+├── scripts/                   # 🔧 脚本目录 ✅
+├── TODO.md                    # ✅ 任务清单
+├── MISSING_FEATURES.md        # ✅ 功能差距分析
+├── DEVELOPMENT_PLAN.md        # ✅ 开发计划
+└── ARCHITECTURE_REFACTORING.md # ✅ 架构重构文档
 ```
 
 **✅ 第一阶段完成状态**：

@@ -7,7 +7,7 @@
 
 import json
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from src.utils.logging.logging_config import get_logger
 
