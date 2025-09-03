@@ -1,0 +1,16 @@
+# 核心音频处理
+numpy==1.26.4
+sounddevice>=0.4.4
+
+# 日志
+colorlog==6.9.0
+
+# 阿里云ASR需要的依赖
+aiohttp==3.12.13
+websockets==11.0.3
+
+# LLM集成
+openai==1.35.0
+
+# macOS音量控制（可选）
+# py-applescript  # macOS only
