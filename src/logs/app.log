@@ -74,3 +74,14 @@ EOFError: EOF when reading a line
 2025-09-03 20:39:15 [INFO] src.core.audio_manager: 音频系统初始化成功
 2025-09-03 20:39:29 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
 2025-09-03 20:40:21 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-04 10:21:05 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-04 10:21:07 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-04 10:21:12 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-04 10:21:37 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-04 10:34:39 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-04 10:34:41 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-04 10:34:41 [WARNING] src.interfaces.cli.cli_interface: 检测到EOF，程序退出
+2025-09-04 10:34:41 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-04 10:36:08 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-04 10:36:11 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-04 10:36:19 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"

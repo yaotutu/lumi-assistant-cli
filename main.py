@@ -10,7 +10,7 @@ import asyncio
 from src.utils.logging.logging_config import setup_logging, get_logger
 from src.core.audio_manager import audio_manager
 from src.core.service_manager import service_manager
-from src.interfaces.cli_interface import cli_interface
+from src.interfaces.cli.cli_interface import cli_interface
 
 logger = get_logger(__name__)
 
