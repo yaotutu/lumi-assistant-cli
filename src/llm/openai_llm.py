@@ -31,27 +31,20 @@ class OpenAILLM(LLMProviderBase):
         self.max_tokens = config.get("max_tokens", 2000)
         self.temperature = config.get("temperature", 0.7)
         
-        # 临时清除代理环境变量避免SOCKS问题
-        import os
-        original_env = {}
-        proxy_vars = ['http_proxy', 'https_proxy', 'all_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY']
+        # 初始化异步OpenAI客户端，禁用代理避免SOCKS问题
+        import httpx
         
-        for var in proxy_vars:
-            if var in os.environ:
-                original_env[var] = os.environ[var]
-                del os.environ[var]
+        # 创建自定义HTTP客户端，禁用环境变量代理设置
+        http_client = httpx.AsyncClient(
+            timeout=httpx.Timeout(60.0),  # 设置超时时间
+            trust_env=False  # 禁用环境变量代理设置
+        )
         
-        try:
-            # 初始化异步OpenAI客户端
-            self.client = AsyncOpenAI(
-                api_key=self.api_key,
-                base_url=self.base_url,
-                timeout=60.0  # 增加超时时间适应大模型
-            )
-        finally:
-            # 恢复原始环境变量
-            for var, value in original_env.items():
-                os.environ[var] = value
+        self.client = AsyncOpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+            http_client=http_client
+        )
         
         # 连接状态标记
         self._is_ready = False

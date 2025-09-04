@@ -1,19 +1,22 @@
+# lumi-assistant 直接依赖
+# 使用: pip install -r requirements.txt
+# 推荐: 使用 uv sync 获得精确版本控制
+
 # 核心音频处理
-numpy==1.26.4
-sounddevice>=0.4.4
+numpy
+sounddevice
 
 # 日志
-colorlog==6.9.0
+colorlog
 
-# 阿里云ASR需要的依赖
-aiohttp==3.12.13
-websockets==11.0.3
+# 阿里云ASR/TTS依赖
+aiohttp
+websockets
+requests
 
 # LLM集成
-openai==1.35.0
-
-# macOS音量控制（可选）
-# py-applescript  # macOS only
+openai
+httpx
 
 # 配置文件解析
-PyYAML>=6.0.0
+PyYAML
