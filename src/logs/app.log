@@ -1,3 +1,14 @@
 2025-09-12 09:39:34 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
 2025-09-12 09:39:34 [INFO] src.core.audio_manager: 音频系统初始化成功
 2025-09-12 09:39:34 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-12 09:46:10 [INFO] src.interfaces.grpc.grpc_server: 正在停止gRPC服务器...
+2025-09-12 09:46:10 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-12 09:46:12 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-12 09:46:12 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-12 09:46:12 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: 0.0.0.0:50051
+2025-09-12 09:47:03 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-12 09:47:30 [ERROR] src.core.operation_controller: Voice task task_1_1757641594 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-12 09:49:18 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-12 09:49:40 [ERROR] src.core.operation_controller: Voice task task_2_1757641749 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-12 09:52:00 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-12 09:52:23 [ERROR] src.core.operation_controller: Voice task task_3_1757641904 failed: 'AliyunASRClient' object has no attribute 'recognize'

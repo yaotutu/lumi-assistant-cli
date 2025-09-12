@@ -22,8 +22,8 @@ async def main():
     parser = argparse.ArgumentParser(description="Lumi Assistant - AI语音助手gRPC服务器")
     parser.add_argument(
         "--host",
-        default="localhost",
-        help="gRPC服务器主机地址 (默认: localhost)"
+        default="0.0.0.0",
+        help="gRPC服务器主机地址 (默认: 0.0.0.0，允许局域网访问)"
     )
     parser.add_argument(
         "--port",

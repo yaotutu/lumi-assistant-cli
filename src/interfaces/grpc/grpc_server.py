@@ -19,7 +19,7 @@ logger = get_logger(__name__)
 class GRPCServer:
     """gRPC服务器管理器"""
     
-    def __init__(self, host: str = "localhost", port: int = 50051):
+    def __init__(self, host: str = "0.0.0.0", port: int = 50051):
         self.host = host
         self.port = port
         self.server = None
@@ -90,7 +90,7 @@ class GRPCServer:
 grpc_server = GRPCServer()
 
 
-async def run_grpc_server(host: str = "localhost", port: int = 50051):
+async def run_grpc_server(host: str = "0.0.0.0", port: int = 50051):
     """运行gRPC服务器的主函数"""
     server = GRPCServer(host, port)
     
