@@ -224,38 +224,9 @@ class EnhancedLLM(OpenAILLM):
             sessions = await self.list_sessions(1)
             
             if sessions and len(sessions) > 0:
-                # 有历史会话，询问是否恢复
-                latest = sessions[0]
-                print(f"\n💬 发现上次会话: {latest['title']}")
-                print("是否继续上次对话？(y/n): ", end="", flush=True)
-                
-                import sys
-                if hasattr(sys.stdin, 'isatty') and sys.stdin.isatty():
-                    choice = input().strip().lower()
-                else:
-                    # 非交互模式，自动创建新会话
-                    choice = 'n'
-                
-                if choice == 'y':
-                    success = await self.resume_session(latest['session_id'])
-                    if success:
-                        print("✅ 已恢复上次会话")
-                        
-                        # 显示最近的对话
-                        session = self.dialogue_manager.get_current_session()
-                        if session and session.messages:
-                            print("\n最近对话：")
-                            for msg in session.messages[-4:]:  # 最近2轮
-                                role = "👤 你" if msg.role == "user" else "🤖 Lumi"
-                                content = msg.content[:80] + ("..." if len(msg.content) > 80 else "")
-                                print(f"{role}: {content}")
-                            print()
-                    else:
-                        print("⚠️ 恢复失败，创建新会话")
-                        await self.new_session()
-                else:
-                    await self.new_session()
-                    print("✅ 已创建新会话")
+                # gRPC服务器模式：直接创建新会话，不进行交互
+                await self.new_session()
+                print("📝 新会话已创建: {}...".format(self.dialogue_manager.get_current_session().session_id[:8]))
             else:
                 # 没有历史会话，创建新的
                 await self.new_session()

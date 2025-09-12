@@ -5,6 +5,6 @@
 接口模块初始化文件
 """
 
-from .cli.cli_interface import cli_interface
+# 只保留gRPC接口，CLI接口已删除
 
-__all__ = ['cli_interface']
+__all__ = []

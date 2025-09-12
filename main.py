@@ -2,27 +2,45 @@
 # -*- coding: utf-8 -*-
 
 """
-lumi-assistant - AI语音助手
-使用事件驱动架构，支持多种接口扩展
+lumi-assistant - AI语音助手gRPC服务器
+使用事件驱动架构提供gRPC接口服务
 """
 
 import asyncio
+import argparse
 from src.utils.logging.logging_config import setup_logging, get_logger
 from src.core.audio_manager import audio_manager
 from src.core.service_manager import service_manager
-from src.interfaces.cli.cli_interface import cli_interface
+from src.interfaces.grpc.grpc_server import run_grpc_server
 
 logger = get_logger(__name__)
 
 
 async def main():
     """主函数"""
+    # 解析命令行参数
+    parser = argparse.ArgumentParser(description="Lumi Assistant - AI语音助手gRPC服务器")
+    parser.add_argument(
+        "--host",
+        default="localhost",
+        help="gRPC服务器主机地址 (默认: localhost)"
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=50051,
+        help="gRPC服务器端口 (默认: 50051)"
+    )
+    args = parser.parse_args()
+    
     try:
         # 设置日志
         setup_logging()
         
         # 显示欢迎信息
-        cli_interface.show_welcome()
+        print("=" * 60)
+        print("🤖  lumi-assistant AI语音助手 - gRPC服务器")
+        print("=" * 60)
         
         # 初始化服务
         if not await service_manager.initialize_all():
@@ -34,8 +52,8 @@ async def main():
             print("❌ 音频系统初始化失败")
             return
         
-        # 运行CLI界面
-        await cli_interface.run()
+        # 运行gRPC服务器
+        await run_grpc_server(args.host, args.port)
         
     except Exception as e:
         print(f"❌ 程序异常: {e}")

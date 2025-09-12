@@ -4,17 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-lumi-assistant 是一个现代化的AI语音助手平台，采用事件驱动架构和模块化设计。实现了完整的语音交互流程：语音识别(ASR) → 大语言模型处理(LLM) → 语音合成(TTS) → 音频播放。支持多种界面（CLI、gRPC、未来扩展GUI），集成对话管理、会话存储等企业级功能。
+lumi-assistant 是一个现代化的AI语音助手gRPC服务器，采用事件驱动架构和模块化设计。实现了完整的语音交互流程：语音识别(ASR) → 大语言模型处理(LLM) → 语音合成(TTS) → 音频播放。提供完整的gRPC接口，支持任务驱动的异步处理和实时事件流，集成对话管理、会话存储等企业级功能。
 
 ## 常用开发命令
 
 ### 运行应用
 ```bash
-# 运行主程序（使用系统Python）
-python main.py
-
-# 或使用uv运行（推荐）
+# 直接启动gRPC服务器（默认端口50051）
 uv run python main.py
+
+# 指定端口启动
+uv run python main.py --port 50052
+
+# 指定主机和端口
+uv run python main.py --host 0.0.0.0 --port 50051
 
 # 测试LLM配置和连接
 python tests/unit/test_llm.py
@@ -39,19 +42,25 @@ python tests/unit/test_llm.py
 # 查看应用日志
 tail -f src/logs/app.log
 
-# 测试gRPC（如果需要）
+# 测试gRPC服务
 python scripts/test_grpc.py
+
+# 快速健康检查
+python scripts/test_grpc.py --quick
+
+# 指定端口测试
+python scripts/test_grpc.py --port 50052
 ```
 
 ## 核心架构
 
 ### 应用流程
-1. **main.py** - 入口程序，管理用户交互循环
-2. **音频录制** - 使用sounddevice捕获麦克风输入，转换为PCM格式  
-3. **ASR识别** - 将PCM音频数据发送到阿里云ASR服务识别为文本
-4. **LLM处理** - 将识别文本发送给LLM获取智能回复
-5. **TTS合成** - 将LLM回复通过阿里云TTS转为PCM音频数据
-6. **音频播放** - 直接播放PCM格式的合成语音
+1. **main.py** - gRPC服务器入口程序，初始化所有服务组件
+2. **gRPC接口** - 提供完整的AI语音助手服务接口
+3. **任务驱动** - 所有操作立即返回task_id，通过异步处理完成实际工作
+4. **事件流系统** - 客户端通过GetEventStream获得实时的处理进度和结果
+5. **统一控制器** - operation_controller作为所有操作的统一入口
+6. **完整处理链** - 音频录制 → ASR识别 → LLM处理 → TTS合成 → 音频播放
 
 ### 模块架构
 ```
@@ -64,11 +73,11 @@ src/
 │   ├── operation_controller.py # 操作控制器
 │   └── service_manager.py # 服务管理器
 │
-├── interfaces/            # 📱 多界面支持层
-│   ├── cli/               # CLI界面实现
-│   │   └── cli_interface.py
-│   └── grpc/              # gRPC接口（待开发）
-│       └── generated/     # gRPC生成代码
+├── interfaces/            # 📱 gRPC接口层
+│   └── grpc/              # gRPC接口实现
+│       ├── grpc_interface.py # gRPC接口管理器
+│       ├── grpc_server.py    # gRPC服务器启动器
+│       └── generated/        # proto编译生成代码
 │
 ├── dialogue/              # 💬 对话管理层
 │   ├── dialogue_manager.py # 对话管理器
@@ -104,6 +113,20 @@ src/
 - **多界面支持**: 统一的操作抽象层，支持CLI、gRPC等多种接口
 - **会话管理**: 完整的对话和会话存储功能，支持上下文记忆
 - **异步处理**: 全面支持异步I/O，提升性能和响应性
+
+### gRPC任务驱动架构
+
+新的gRPC架构采用**任务驱动模式**：所有操作立即返回task_id，客户端通过事件流获取实时更新。
+
+```
+gRPC客户端 → gRPC接口 → operation_controller → 返回task_id
+                   ↓ (异步处理)
+事件发布 ← 服务处理链 ← ASR → LLM → TTS → 音频播放
+  ↓
+客户端通过GetEventStream接收实时更新
+```
+
+**核心优势**: 即时响应、实时反馈、未来扩展、统一控制
 
 ## 关键配置
 
@@ -265,3 +288,7 @@ from src.dialogue.session_manager import SessionManager
 - 音频数据流式处理，减少内存占用
 - LLM请求支持超时和重试机制
 - 会话存储采用增量更新策略
+
+
+!!! 重要提醒
+- 每一行代码都要有详细的注释

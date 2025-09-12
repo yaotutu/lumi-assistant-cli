@@ -1,0 +1,103 @@
+2025-09-11 11:56:09 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 11:56:10 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 11:56:10 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 11:56:31 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 11:56:32 [ERROR] src.asr.aliyun_asr: ASR失败，状态码: 40000001
+2025-09-11 11:57:12 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 11:57:15 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 11:57:15 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 11:57:42 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 11:57:43 [ERROR] src.asr.aliyun_asr: ASR失败，状态码: 40000001
+2025-09-11 12:04:52 [ERROR] src.asr.aliyun_asr: ASR失败，状态码: 40000001
+2025-09-11 12:05:48 [ERROR] src.asr.aliyun_asr: ASR失败，状态码: 40000001
+2025-09-11 13:01:07 [INFO] src.interfaces.grpc.grpc_server: 正在停止gRPC服务器...
+2025-09-11 13:01:07 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-11 13:01:12 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 13:01:16 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 13:01:16 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 13:01:25 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 13:32:32 [INFO] src.interfaces.grpc.grpc_server: 正在停止gRPC服务器...
+2025-09-11 13:32:32 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-11 17:17:19 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:17:21 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:17:21 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:17:50 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:17:51 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:17:51 [WARNING] src.core.operation_controller: TTS playback failed: 'AliyunTTSClient' object has no attribute 'synthesize'
+2025-09-11 17:17:53 [WARNING] src.core.operation_controller: TTS playback failed: 'AliyunTTSClient' object has no attribute 'synthesize'
+2025-09-11 17:17:56 [ERROR] src.interfaces.grpc.grpc_interface: StartRecording error: 'AudioManager' object has no attribute 'start_recording'
+2025-09-11 17:24:06 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:24:06 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:24:06 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:25:01 [ERROR] src.interfaces.grpc.grpc_interface: StartRecording error: StartListeningEvent.__init__() got an unexpected keyword argument 'session_id'
+2025-09-11 17:25:02 [ERROR] src.interfaces.grpc.grpc_interface: StopRecording error: StopListeningEvent.__init__() got an unexpected keyword argument 'session_id'
+2025-09-11 17:26:21 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:26:22 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:26:22 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:26:50 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:27:14 [ERROR] src.core.operation_controller: Voice task task_1_1757582809 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 17:27:33 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:27:33 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:27:34 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 17:27:37 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 17:27:39 [ERROR] src.core.operation_controller: Voice task task_4_1757582858 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 17:28:35 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:28:35 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:28:36 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 17:28:38 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 17:28:41 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:28:55 [ERROR] src.core.operation_controller: Voice task task_7_1757582920 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 17:35:34 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:35:35 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:35:35 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:38:59 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:38:59 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:38:59 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50052
+2025-09-11 17:44:10 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:44:10 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:44:10 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:45:15 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:45:25 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:45:25 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:47:21 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:47:21 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:47:21 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:48:16 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:48:16 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:48:16 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:51:05 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:51:05 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:51:05 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:58:20 [INFO] src.interfaces.grpc.grpc_server: 正在停止gRPC服务器...
+2025-09-11 17:58:20 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-11 17:58:23 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 17:58:23 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 17:58:23 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 17:59:47 [INFO] src.interfaces.grpc.grpc_server: 正在停止gRPC服务器...
+2025-09-11 17:59:47 [INFO] src.core.audio_manager: 音频资源已清理
+2025-09-11 18:01:18 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:01:18 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 18:01:18 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 18:02:04 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:02:04 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:02:05 [WARNING] src.tts.aliyun_tts: 正在处理其他TTS任务，请稍后再试
+2025-09-11 18:02:05 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 18:02:11 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:02:22 [ERROR] src.core.operation_controller: Voice task task_3_1757584929 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 18:03:47 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:03:55 [ERROR] src.core.operation_controller: Voice task task_4_1757585017 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 18:15:03 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:15:03 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 18:15:03 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 18:15:16 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:15:16 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:15:17 [WARNING] src.tts.aliyun_tts: 正在处理其他TTS任务，请稍后再试
+2025-09-11 18:15:18 [WARNING] src.core.operation_controller: TTS playback failed: AudioPlayer.play_pcm() got an unexpected keyword argument 'sample_rate'
+2025-09-11 18:15:20 [ERROR] src.core.operation_controller: Voice task task_3_1757585719 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 18:18:38 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:18:47 [ERROR] src.core.operation_controller: Voice task task_4_1757585910 failed: 'AliyunASRClient' object has no attribute 'recognize'
+2025-09-11 18:18:55 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:18:55 [INFO] src.core.audio_manager: 音频系统初始化成功
+2025-09-11 18:18:56 [INFO] src.interfaces.grpc.grpc_server: 🚀 gRPC服务器已启动: localhost:50051
+2025-09-11 18:19:44 [INFO] httpx: HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 18:19:52 [ERROR] src.core.operation_controller: Voice task task_5_1757585977 failed: 'AliyunASRClient' object has no attribute 'recognize'
